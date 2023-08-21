@@ -4,63 +4,67 @@
 
 #include <SFML/Graphics.hpp>
 
+using namespace std;
+
 int height = 600;
 int width = 600;
 
-sf::RenderWindow window(sf::VideoMode(width, height), "SFML works!");
-
 int rectNum = 50;
+int rectWidth = width / rectNum - 5;
 bool sorted = false;
 
-void shuffle(sf::RectangleShape (&rect)[]) {
-    srand(time(NULL));
-    sf::Vector2f tmp;
+sf::RenderWindow window(sf::VideoMode(width, height), "SFML works!");
 
+void shuffle(int (&rectSizes)[]) {
+    srand(time(NULL));
+
+    int tmp;
     for (int i = rectNum - 1; i >= 0; i--) {
+
         int j = rand() % (i + 1);
 
-        tmp = rect[i].getSize();
-        rect[i].setSize(rect[j].getSize());
-        rect[j].setSize(tmp);
+        tmp = rectSizes[i];
+        rectSizes[i] = rectSizes[j];
+        rectSizes[j] = tmp;
     }
 }
 
-void display(sf::RectangleShape (&rect)[], int index) {
+void display(int rectSizes[], int index) {
+    int i = 0;
     int j = 0;
 
     window.clear();
-    while (j != rectNum) {
-        if (j == index || sorted) {
-            rect[j].setFillColor(sf::Color::Green);
+    sf::RectangleShape rect;
+    while (i != rectNum) {      
+        rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
+
+        rect.setPosition(j, height);
+
+        j += rectWidth + 5;
+
+        if (i == index || sorted) {
+            rect.setFillColor(sf::Color::Green);
         }
-        window.draw(rect[j]);
-        rect[j].setFillColor(sf::Color::White);
-        j++;
+        window.draw(rect);
+        i++;
+    }
+    window.display();
+}
+
+void initSizes(int (&rectSizes)[]) {
+    int i = 0;
+
+    while (i != rectNum) {
+        rectSizes[i] = - (20 + 10 * i);
+        i++;
     }
 }
 
 int main()
 {
-
-
-    sf::RectangleShape rect[rectNum];
-
-    int i = 0, j = height, l = 0;
-    int rectWidth = width / rectNum - 5;
-
-    while (l < rectNum) {
-        rect[l].setSize(sf::Vector2f(rectWidth, - (20  + 10 * l)));
-
-        rect[l].setPosition(i, j);
-
-        i += rectWidth + 5;
-
-        l++;
-    }
-
-    l = 0;
-    
-    shuffle(rect);
+    int rectSizes[rectNum];
+    initSizes(rectSizes); 
+    shuffle(rectSizes);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -68,16 +72,8 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
-        display(rect, -1);
-
-        // Reset variables.
-        l = 0;
-        i = 0;
-        // Copy the buffer to the window.
-        window.display();
+        display(rectSizes, -1);
     }
 
     return 0;
 }
-
