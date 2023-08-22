@@ -1,4 +1,4 @@
-#include "../headers/main.h"
+#include "../headers/utils.h"
 #include "../headers/common.h"
 #include "../headers/display.h"
 
@@ -10,9 +10,7 @@ void insertionSort(int (&rectSizes)[]) {
         sleep();
         j = i;
         while(j > 0 && rectSizes[j - 1] > rectSizes[j]) {
-            rectSizes[j] = rectSizes[j] + rectSizes[j - 1];
-            rectSizes[j - 1] = rectSizes[j] - rectSizes[j - 1];
-            rectSizes[j] = rectSizes[j] - rectSizes[j - 1];
+            swapInt(rectSizes, j, j -1);
             display(rectSizes, j);
             j--;
         }
