@@ -1,19 +1,11 @@
-#include <iostream>
-#include <stdlib.h>
-#include <time.h>
 
-#include <SFML/Graphics.hpp>
-
-using namespace std;
-
-int height = 600;
-int width = 600;
-
-int rectNum = 50;
-int rectWidth = width / rectNum - 5;
-bool sorted = false;
+#include "./headers/common.h"
+#include "./headers/insertion.h"
+#include "./headers/display.h"
 
 sf::RenderWindow window(sf::VideoMode(width, height), "SFML works!");
+bool sorted;
+bool closable = false;
 
 void shuffle(int (&rectSizes)[]) {
     srand(time(NULL));
@@ -26,54 +18,54 @@ void shuffle(int (&rectSizes)[]) {
         tmp = rectSizes[i];
         rectSizes[i] = rectSizes[j];
         rectSizes[j] = tmp;
+
     }
-}
-
-void display(int rectSizes[], int index) {
-    int i = 0;
-    int j = 0;
-
-    window.clear();
-    sf::RectangleShape rect;
-    while (i != rectNum) {      
-        rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
-
-        rect.setPosition(j, height);
-
-        j += rectWidth + 5;
-
-        if (i == index || sorted) {
-            rect.setFillColor(sf::Color::Green);
-        }
-        window.draw(rect);
-        i++;
-    }
-    window.display();
 }
 
 void initSizes(int (&rectSizes)[]) {
     int i = 0;
-
-    while (i != rectNum) {
-        rectSizes[i] = - (20 + 10 * i);
+    srand(time(NULL));
+    while (i < rectNum) {
+        rectSizes[i] = rand() % height;
+//        rectSizes[i] = (20 + 10 * i + i) % height;
         i++;
+    }
+}
+void sleep() {
+    const sf::Time freezeLength{sf::seconds(waitTime)};
+    sf::Clock freezeClock;
+    while(freezeClock.getElapsedTime() < freezeLength) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+                closable = true;
+            }
+        }
     }
 }
 
 int main()
 {
+    int index = 0;
+    sorted = false;
     int rectSizes[rectNum];
     initSizes(rectSizes); 
     shuffle(rectSizes);
 
+    display(rectSizes, -1);
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        display(rectSizes, -1);
+        if (!sorted)
+            insertionSort(rectSizes);
+        index = sortedDisplay(rectSizes, index);
     }
-
+    for (int i = 0; i < rectNum; i++) {
+        cout << rectSizes[i] << endl;
+    }
     return 0;
 }
