@@ -1,1 +1,0 @@
-void display(sf::RectangleShape (&rect)[], int index);
