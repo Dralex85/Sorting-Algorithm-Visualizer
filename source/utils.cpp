@@ -52,3 +52,30 @@ void sleep() {
         }
     }
 }
+
+constexpr unsigned int str2int(const char* str, int h = 0)
+{
+    return !str[h] ? 5381 : (str2int(str, h+1) * 33) ^ str[h];
+}
+
+int parser(int argc, char **argv) {
+    if (argc == 1)
+        return -1;
+
+    if (argc >= 3)
+        rectNum = stoi(argv[2]);
+
+    if (argc == 4)
+        waitTime = atof(argv[3]);
+
+    switch(str2int(argv[1])) {
+        case str2int("insertion"):
+            return 0;
+
+        case str2int("selection"):
+            return 1;
+
+        default:
+            return -1;
+    }
+}

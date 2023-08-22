@@ -15,7 +15,4 @@ void selectionSort(int (&rectSizes)[]) {
         displayTwoInteraction(rectSizes, i, minPos);
     }
     sorted = true;
-
-
-
 }

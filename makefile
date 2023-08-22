@@ -4,7 +4,7 @@ compile:./main.cpp
 	rm -f *.o
 
 run:
-	./app
+	./app selection
 
 clear:
 	rm -f app
