@@ -12,7 +12,7 @@ void selectionSort(int (&rectSizes)[]) {
                 minPos = j;
         }
         swapInt(rectSizes, i, minPos);
-        displayTwoInteraction(rectSizes, i, minPos);
+        displayTwo(rectSizes, i, minPos);
     }
     sorted = true;
 }

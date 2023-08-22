@@ -2,7 +2,8 @@
 #define DISPLAY_HEADER
 
 void display(int rectSizes[], int index);
-void displayTwoInteraction(int rectSizes[], int indexOne, int indexTwo);
+void displayTwo(int rectSizes[], int indexOne, int indexTwo);
 int sortedDisplay(int (&rectSizes)[], int index);
+void displayQuick(int rectSizes[], int bot, int top, int indexOne, int indexTwo);
 
 #endif

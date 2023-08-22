@@ -62,8 +62,11 @@ int parser(int argc, char **argv) {
     if (argc == 1)
         return -1;
 
-    if (argc >= 3)
+    if (argc >= 3) {
         rectNum = stoi(argv[2]);
+        if (rectNum < 1)
+            rectNum = 1;
+    }
 
     if (argc == 4)
         waitTime = atof(argv[3]);
@@ -74,6 +77,9 @@ int parser(int argc, char **argv) {
 
         case str2int("selection"):
             return 1;
+
+        case str2int("quick"):
+            return 2;
 
         default:
             return -1;

@@ -3,5 +3,6 @@
 
 void insertionSort(int (&rectSizes)[]);
 void selectionSort(int (&rect)[]);
+void quickSort(int (&rectSizes)[], int bot, int top, int version);
 
 #endif

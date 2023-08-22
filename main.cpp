@@ -18,18 +18,13 @@ int main(int argc, char **argv)
     int index = 0;
     sorted = false;
     int rectSizes[rectNum];
-    rectWidth = width / rectNum - 5;          //Visual representation of each element
+    rectWidth = width / rectNum - 5;
 
 
     initSizes(rectSizes); 
     shuffle(rectSizes);
 
     display(rectSizes, -1);
-
-    cout << argc << endl;
-    for (int i = 0; i < argc; i++) {
-        cout << argv[i] << endl;
-    }
 
     while (window.isOpen()) {
         sf::Event event;
@@ -40,19 +35,24 @@ int main(int argc, char **argv)
         if (!sorted) {
             switch(algorithm) {
                 case 0:
+                    cout << "InsertionSort" << endl;
                     insertionSort(rectSizes);
                     break;
 
                 case 1:
+                    cout << "SelectionSort" << endl;
                     selectionSort(rectSizes);
+                    break;
+
+                case 2:
+                    cout << "QuickSort" << endl;
+                    quickSort(rectSizes, 0, rectNum - 1, 0);
                     break;
 
                 default:
                     cout << "Error : No algorithm selected" << endl;
                     window.close();
             }
-//            insertionSort(rectSizes);
-//            selectionSort(rectSizes);
         }
         index = sortedDisplay(rectSizes, index);
     }
