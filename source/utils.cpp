@@ -1,9 +1,9 @@
 #include "../headers/common.h"
 
 void swapInt(vector<int> &tab, int one, int two) {
-    int tmp = tab[one];
-    tab[one] = tab[two];
-    tab[two] = tmp;
+    int tmp = tab.at(one);
+    tab.at(one) = tab.at(two);
+    tab.at(two) = tmp;
 }
 
 void initSizes(vector<int> &rectSizes) {
@@ -21,16 +21,16 @@ void shuffle(vector<int> &rectSizes) {
 
     for(int i = 0; i < rectSizes.size(); i++) {
         j = rand() % (i + 1);
-        tmp = rectSizes[i];
-        rectSizes[i] = rectSizes[j];
-        rectSizes[j] = tmp;
+        tmp = rectSizes.at(i);
+        rectSizes.at(i) = rectSizes.at(j);
+        rectSizes.at(j) = tmp;
     }
 }
 
 void verify(vector<int> tab) {
-    int last = tab[0];
+    int last = tab.at(0);
     for (int i = 0; i < tab.size(); i++) {
-        if (tab[i] < last)
+        if (tab.at(i) < last)
             return;
     }
     verifiedSorted = true;

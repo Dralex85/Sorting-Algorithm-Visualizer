@@ -7,7 +7,7 @@ void selectionSort(vector<int> &rectSizes) {
         minPos = i;
 
         for (int j = i + 1; j < rectSizes.size(); j++) {
-            if (rectSizes[j] < rectSizes[minPos])
+            if (rectSizes.at(j) < rectSizes.at(minPos))
                 minPos = j;
         }
         swapInt(rectSizes, i, minPos);

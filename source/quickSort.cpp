@@ -1,11 +1,11 @@
 #include "../headers/common.h"
 
 int partition(vector<int> &rectSizes, int bot, int top) {
-    int pivot = rectSizes[top];
+    int pivot = rectSizes.at(top);
     int i = bot - 1;
 
     for (int j = bot; j < top; j++) {
-        if (rectSizes[j] <= pivot) {
+        if (rectSizes.at(j) <= pivot) {
             i++;
             sleep();
             swapInt(rectSizes, i, j);

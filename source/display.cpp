@@ -8,7 +8,7 @@ void display(vector<int> rectSizes, int index) {
         sf::RectangleShape rect;
 
         //Set height of object
-        rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
+        rect.setSize(sf::Vector2f(rectWidth, rectSizes.at(i)));
         //Set position of object at the bottom of the window
         rect.setPosition(offset, height);
         //Rotate object, normally rect while point to the bottom
@@ -34,7 +34,7 @@ void displayTwoIndex(vector<int> rectSizes, int index1, int index2) {
         sf::RectangleShape rect;
 
         //Set height of object
-        rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
+        rect.setSize(sf::Vector2f(rectWidth, rectSizes.at(i)));
         //Set position of object at the bottom of the window
         rect.setPosition(offset, height);
         //Rotate object, normally rect while point to the bottom
@@ -60,7 +60,7 @@ void displayQuick(vector<int> rectSizes,int bot, int top, int index1, int index2
         sf::RectangleShape rect;
 
         //Set height of object
-        rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
+        rect.setSize(sf::Vector2f(rectWidth, rectSizes.at(i)));
         //Set position of object at the bottom of the window
         rect.setPosition(offset, height);
         //Rotate object, normally rect while point to the bottom
