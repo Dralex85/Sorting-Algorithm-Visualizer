@@ -1,9 +1,11 @@
 #ifndef DISPLAY_HEADER
 #define DISPLAY_HEADER
 
-void display(int rectSizes[], int index);
-void displayTwo(int rectSizes[], int indexOne, int indexTwo);
-int sortedDisplay(int (&rectSizes)[], int index);
-void displayQuick(int rectSizes[], int bot, int top, int indexOne, int indexTwo);
+#include "./common.h"
+
+void display(vector<int> rectSizes, int index);
+void displayTwoIndex(vector<int> rectSizes, int index1, int index2);
+void displayQuick(vector<int> rectSizes,int bot, int top, int index1, int index2);
+int sortedDisplay(vector<int> rectSizes, int index);
 
 #endif

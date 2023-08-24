@@ -1,18 +1,17 @@
 #include "../headers/common.h"
-#include "../headers/utils.h"
-#include "../headers/display.h"
 
-void selectionSort(int (&rectSizes)[]) {
-    for (int i = 0; i < rectNum; i++) {
+void selectionSort(vector<int> &rectSizes) {
+    int minPos;
+    for (int i = 0; i < rectSizes.size(); i++) {
         sleep();
-        int minPos = i;
+        minPos = i;
 
-        for (int j = i + 1; j < rectNum; j++) {
+        for (int j = i + 1; j < rectSizes.size(); j++) {
             if (rectSizes[j] < rectSizes[minPos])
                 minPos = j;
         }
         swapInt(rectSizes, i, minPos);
-        displayTwo(rectSizes, i, minPos);
+        displayTwoIndex(rectSizes, i, minPos);
     }
     sorted = true;
 }

@@ -1,8 +1,11 @@
-#ifndef INSERTION_HEADER
-#define INSERTION_HEADER
+#ifndef SORTER_HEADER
+#define SORTER_HEADER
 
-void insertionSort(int (&rectSizes)[]);
-void selectionSort(int (&rect)[]);
-void quickSort(int (&rectSizes)[], int bot, int top, int version);
+#include "./common.h"
+
+void insertionSort(vector<int> &rectSizes);
+void selectionSort(vector<int> &rectSizes);
+void quickSort(vector<int> &rectSizes, int bot, int top, int version);
+
 
 #endif

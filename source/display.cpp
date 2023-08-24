@@ -1,105 +1,121 @@
 #include "../headers/common.h"
-#include "../headers/utils.h"
 
-void display(int rectSizes[], int index) {
-    int i = 0;
-    int j = rectWidth;
-    int color;
+void display(vector<int> rectSizes, int index) {
+    int offset = rectWidth;
 
     window.clear();
-    while (i < rectNum) {  
+    for (int i = 0; i < rectSizes.size(); i++) {
         sf::RectangleShape rect;
 
+        //Set height of object
         rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
-        rect.setPosition(j, height);
+        //Set position of object at the bottom of the window
+        rect.setPosition(offset, height);
+        //Rotate object, normally rect while point to the bottom
         rect.rotate(180);
 
-        j += rectWidth + 5;
+        //Set offset to have a space between object
+        offset += rectWidth + 5;
 
-        if (i == index || sorted) {
+        //If the rect is currently check, color it
+        if (i == index)
             rect.setFillColor(sf::Color::Green);
-        }
+
         window.draw(rect);
-        i++;
     }
     window.display();
 }
 
-void displayTwo(int rectSizes[], int indexOne, int indexTwo) {
-    int i = 0;
-    int j = rectWidth;
+void displayTwoIndex(vector<int> rectSizes, int index1, int index2) {
+    int offset = rectWidth;
 
     window.clear();
-    while (i < rectNum) {  
+    for (int i = 0; i < rectSizes.size(); i++) {
         sf::RectangleShape rect;
 
+        //Set height of object
         rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
-        rect.setPosition(j, height);
+        //Set position of object at the bottom of the window
+        rect.setPosition(offset, height);
+        //Rotate object, normally rect while point to the bottom
         rect.rotate(180);
 
-        j += rectWidth + 5;
+        //Set offset to have a space between object
+        offset += rectWidth + 5;
 
-        if (i == indexOne || i == indexTwo || sorted) {
+        //If the rect is currently check, color it
+        if (i == index1 || i == index2)
             rect.setFillColor(sf::Color::Green);
-        }
+
         window.draw(rect);
-        i++;
     }
     window.display();
 }
 
-void displayQuick(int rectSizes[], int bot, int top, int indexOne, int indexTwo) {
-    int i = 0;
-    int j = rectWidth;
-    int color;
+void displayQuick(vector<int> rectSizes,int bot, int top, int index1, int index2) {
+    int offset = rectWidth;
 
     window.clear();
-    while (i < rectNum) {  
+    for (int i = 0; i < rectSizes.size(); i++) {
         sf::RectangleShape rect;
 
+        //Set height of object
         rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
-        rect.setPosition(j, height);
+        //Set position of object at the bottom of the window
+        rect.setPosition(offset, height);
+        //Rotate object, normally rect while point to the bottom
         rect.rotate(180);
 
-        j += rectWidth + 5;
+        //Set offset to have a space between object
+        offset += rectWidth + 5;
 
-        if ((i >= bot && i <= top) && !sorted) {
+        //Color all the rect in the interval currently processed
+        if((i >= bot && i <= top)) {
             rect.setFillColor(sf::Color {75, 75, 75});
         }
 
-        if (i == indexOne || i == indexTwo || sorted) {
+        //If the rect is currently check, color it
+        if (i == index1 || i == index2)
             rect.setFillColor(sf::Color::Green);
-        }
 
         window.draw(rect);
-        i++;
     }
     window.display();
 }
 
-int sortedDisplay(int (&rectSizes)[], int index) {
-    int i = 0;
-    int j = rectWidth;
+int sortedDisplay(vector<int> rectSizes, int index) {
+    int offset = rectWidth;
+    //Higher it is, slower it is
+    int speedFactor = 20;
 
     window.clear();
-    bool sortedForReal = verify(rectSizes);
-    while (i < rectNum) {      
+
+    //If it is the first call, check if the sort algorithm was right
+    if(!verifiedSorted)
+        verify(rectSizes);
+    
+    for (int i = 0; i < rectSizes.size(); i++) {
         sf::RectangleShape rect;
 
+        //Set height of object
         rect.setSize(sf::Vector2f(rectWidth, rectSizes[i]));
-        rect.setPosition(j, height);
+        //Set position of object at the bottom of the window
+        rect.setPosition(offset, height);
+        //Rotate object, normally rect while point to the bottom
         rect.rotate(180);
 
-        j += rectWidth + 5;
+        //Set offset to have a space between object
+        offset += rectWidth + 5;
 
-        if (i * 75 <= index ) {
-            rect.setFillColor(sortedForReal ? sf::Color::Green : sf::Color::Red);
-        }
+        //If the rect is currently check, color it accordingly to the sorting state
+        if (i * speedFactor <= index)
+            rect.setFillColor(verifiedSorted ? sf::Color::Green : sf::Color::Red);
+
         window.draw(rect);
-        i++;
     }
     window.display();
-    if (index < rectNum * 75)
+    if (index < rectSizes.size() * speedFactor)
         index++;
-    return(index);
+
+    return index;
 }

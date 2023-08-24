@@ -1,42 +1,40 @@
 #include "../headers/common.h"
 
-void swapInt(int (&tab)[], int one, int two) {
+void swapInt(vector<int> &tab, int one, int two) {
     int tmp = tab[one];
     tab[one] = tab[two];
     tab[two] = tmp;
 }
 
-bool verify(int (&tab)[]) {
-    int last = tab[0];
-    for (int i = 0; i < rectNum; i++) {
-        if (tab[i] < last)
-            return false;
+void initSizes(vector<int> &rectSizes) {
+    srand(time(NULL));
+    for(int i = 0; i < rectNum; i++) {
+        rectSizes.push_back(rand() % height);
     }
-    return true;
 }
 
-void shuffle(int (&rectSizes)[]) {
+void shuffle(vector<int> &rectSizes) {
     srand(time(NULL));
 
+    int j;
     int tmp;
-    for (int i = rectNum - 1; i >= 0; i--) {
 
-        int j = rand() % (i + 1);
-
+    for(int i = 0; i < rectSizes.size(); i++) {
+        j = rand() % (i + 1);
         tmp = rectSizes[i];
         rectSizes[i] = rectSizes[j];
         rectSizes[j] = tmp;
-
     }
 }
 
-void initSizes(int (&rectSizes)[]) {
-    int i = 0;
-    srand(time(NULL));
-    while (i < rectNum) {
-        rectSizes[i] = rand() % height;
-        i++;
+void verify(vector<int> tab) {
+    int last = tab[0];
+    for (int i = 0; i < tab.size(); i++) {
+        if (tab[i] < last)
+            return;
     }
+    verifiedSorted = true;
+    return;
 }
 
 void sleep() {
@@ -68,8 +66,9 @@ int parser(int argc, char **argv) {
             rectNum = 1;
     }
 
-    if (argc == 4)
+    if (argc == 4) {
         waitTime = atof(argv[3]);
+    }
 
     switch(str2int(argv[1])) {
         case str2int("insertion"):

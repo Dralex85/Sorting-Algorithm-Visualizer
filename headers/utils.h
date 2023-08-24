@@ -1,12 +1,13 @@
-#ifndef UTILS_HEADER
-#define UTILS_HEADER
+#ifndef UTILS_COMMON
+#define UTILS_COMMON
 
-void swapInt(int (&tab)[], int one, int two);
-bool verify(int(&tab)[]);
-void sleep();
-void initSizes(int (&rectSizes)[]);
-void shuffle(int (&rectSizes)[]);
-constexpr unsigned int str2int(const char* str, int h = 0); //Took from stackoverflow : https://stackoverflow.com/a/16388610
+#include "./common.h"
+
+void initSizes(vector<int> &rectSizes);
 int parser(int argc, char **argv);
+void sleep();
+void shuffle(vector<int> &rectSizes);
+void swapInt(vector<int> &tab, int one, int two);
+void verify(vector<int> tab);
 
 #endif
