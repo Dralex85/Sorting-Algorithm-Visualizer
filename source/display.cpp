@@ -11,7 +11,7 @@ void display(vector<int> rectSizes, int index) {
         rect.setSize(sf::Vector2f(rectWidth, rectSizes.at(i)));
         //Set position of object at the bottom of the window
         rect.setPosition(offset, height);
-        //Rotate object, normally rect while point to the bottom
+        //Rotate object, normally rect will point to the bottom
         rect.rotate(180);
 
         //Set offset to have a space between object

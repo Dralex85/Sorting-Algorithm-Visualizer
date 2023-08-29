@@ -29,5 +29,6 @@ extern bool sorted;
 extern bool closable;
 extern bool verifiedSorted;
 extern float waitTime;
+extern float sleepCount;
 
 #endif

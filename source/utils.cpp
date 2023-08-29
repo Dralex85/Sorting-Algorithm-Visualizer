@@ -1,5 +1,12 @@
 #include "../headers/common.h"
 
+vector<int> copy(vector<int> src) {
+    vector<int> copy;
+    copy.swap(src);
+
+    return copy;
+}
+
 void swapInt(vector<int> &tab, int one, int two) {
     int tmp = tab.at(one);
     tab.at(one) = tab.at(two);
@@ -38,6 +45,7 @@ void verify(vector<int> tab) {
 }
 
 void sleep() {
+    sleepCount += waitTime;
     const sf::Time freezeLength{sf::seconds(waitTime)};
     sf::Clock freezeClock;
     while(freezeClock.getElapsedTime() < freezeLength) {
@@ -79,6 +87,12 @@ int parser(int argc, char **argv) {
 
         case str2int("quick"):
             return 2;
+
+        case str2int("bubble"):
+            return 3;
+
+        case str2int("comb"):
+            return 4;
 
         default:
             return -1;
