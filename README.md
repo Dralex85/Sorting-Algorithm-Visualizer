@@ -11,7 +11,7 @@ This project is based on SFML library to visualy represent sorting algorithm
 # Summary
 * **[Summary](#summary)**
 * **[Launching](#launching)**
-* **[Algorithm](#algortihm)**
+* **[Algorithm](#algorithm)**
 
 <br/>
 
