@@ -45,16 +45,67 @@ void algorithmChoice(int algorithm, vector<int> &rectSizes) {
     return;
 }
 
+void all(vector<int> rectSizes) {
+    vector<int> original = rectSizes;
+    int index = 0;
+    int currentAlgorithm = 0;
+
+    clock_t clock_start = clock();
+    bool clockIsUp = true;
+
+    while(window.isOpen()) {
+        sf::Event event;
+        while(window.pollEvent(event)) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                sleep();
+                    if(currentAlgorithm >= algorithmNumber - 1) {
+                        return;
+                    }
+                currentAlgorithm++;
+                rectSizes = original;
+                index = 0;
+                sorted = false;
+                sleepCount = 0;
+                clockIsUp = true;
+                clock_start = clock();
+            }
+
+            if(event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+
+        if(!sorted && !closable) {
+            algorithmChoice(currentAlgorithm, rectSizes);
+        }
+
+        if(sorted && clockIsUp) {
+            clock_t clock_end = clock();
+            clockIsUp = false;
+            cout << "CPU time used : " << (1000.0 * (clock_end - clock_start) /CLOCKS_PER_SEC) - sleepCount * 1000 << "ms" << endl;
+            cout << "Real time elapsed : " << (1000.0 * (clock_end - clock_start) /CLOCKS_PER_SEC) << "ms" << endl << endl;
+        }
+
+        index = sortedDisplay(rectSizes, index);
+    }
+}
+
 int main(int argc, char **argv) {
 
     vector<int> rectSizes;
     int algorithm = parser(argc, argv);
     rectWidth = (width / rectNum) - 5;
+
     int index = 0;
     initSizes(rectSizes);
     shuffle(rectSizes);
-    display(rectSizes, -1);
+    
+    if(algorithm == -42) {
+        all(rectSizes);
+        return 0;
+    }
 
+    display(rectSizes, -1);
     const clock_t clock_start = clock();
     bool clockIsUp = true;
 

@@ -79,6 +79,9 @@ int parser(int argc, char **argv) {
     }
 
     switch(str2int(argv[1])) {
+        case str2int("all"):
+            return -42;
+
         case str2int("insertion"):
             return 0;
 
