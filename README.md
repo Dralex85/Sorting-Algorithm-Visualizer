@@ -40,23 +40,23 @@ Also, you can see all the algorithm when using `all` at the place of `algorithm`
 # Algorithm
 
 * InsertionSort  
-      Called with `insertion`  
-      Check for each element if any previous element on the array is smaller,  
-      if so, swap them and continue to the next
+     Called with `insertion`  
+     Check for each element if any previous element on the array is smaller,  
+     if so, swap them and continue to the next
 
 * SelectionSort  
-    Called with `selection`  
-    At each element, look a all the next element of the array  
-    Swap the element with the smaller element contain in the rest of the list
+     Called with `selection`  
+     At each element, look a all the next element of the array  
+     Swap the element with the smaller element contain in the rest of the list
 
 * QuickSort  
-    Called with `quick`
+     Called with `quick`
 
 * BubbleSort  
-    Called with `bubble`
+     Called with `bubble`
 
 * CombSort  
-    Called with `comb`
+     Called with `comb`
 
 
 <br/>
