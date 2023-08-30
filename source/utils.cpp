@@ -97,6 +97,9 @@ int parser(int argc, char **argv) {
         case str2int("comb"):
             return 4;
 
+        case str2int("merge"):
+            return 5;
+
         default:
             return -1;
     }

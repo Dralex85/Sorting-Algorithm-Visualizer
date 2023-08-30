@@ -38,6 +38,11 @@ void algorithmChoice(int algorithm, vector<int> &rectSizes) {
             combSort(rectSizes);
             break;
 
+        case 5:
+            cout << "MergeSort" << endl;
+            mergeSort(rectSizes, 0, rectSizes.size() - 1);
+            break;
+
         default:
             cout << "Error : No algorithm choose" << endl;
             break;

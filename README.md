@@ -58,5 +58,10 @@ Also, you can see all the algorithm when using `all` at the place of `algorithm`
 * CombSort  
      Called with `comb`
 
+* MergeSort  
+     Called with `merge`
+     Recursivly break the array in multiple array of size 1
+     Then, combine all the formed array into larger one, sorting them at each fusion
+     The final array is the size of the original and is sorted
 
 <br/>
