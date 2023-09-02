@@ -20,7 +20,7 @@ using namespace std;
 //Hard const global variable
 const int height = 720; //Height of the window
 const int width = 1080; //Width of the window, also max number of element
-const int algorithmNumber = 6;
+const int algorithmNumber = 7;
 
 //Global variable
 extern sf::RenderWindow window;

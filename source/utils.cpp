@@ -100,6 +100,9 @@ int parser(int argc, char **argv) {
         case str2int("merge"):
             return 5;
 
+        case str2int("heap"):
+            return 6;
+
         default:
             return -1;
     }

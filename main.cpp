@@ -43,6 +43,11 @@ void algorithmChoice(int algorithm, vector<int> &rectSizes) {
             mergeSort(rectSizes, 0, rectSizes.size() - 1);
             break;
 
+        case 6:
+            cout << "HeapSort" << endl;
+            heapSort(rectSizes);
+            break;
+
         default:
             cout << "Error : No algorithm choose" << endl;
             break;

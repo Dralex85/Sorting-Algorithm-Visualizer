@@ -64,4 +64,13 @@ Also, you can see all the algorithm when using `all` at the place of `algorithm`
      Then, combine all the formed array into larger one, sorting them at each fusion  
      The final array is the size of the original and is sorted
 
+* HeapSort  
+     Called with `heap`  
+     Sort the array in the form of a max-heap tree  
+          Each element is the 'parent' of the next two element, 1 parent of 2 & 3, 2 parent of 4 & 5 etc...  
+          A parent is bigger than it's childs, which are not sorted  
+          Using this, we know the bigest element is the root of the tree  
+     After the max-heapify of the array, we switch the first and the last non-sorted element
+     And re-apply the max-heapify to the non-sorted array to get the next bigest element to the root  
+
 <br/>
