@@ -15,3 +15,17 @@ void selectionSort(vector<int> &rectSizes) {
     }
     sorted = true;
 }
+
+void selectionSortNoDisplay(vector<int> &rectSizes) {
+    int minPos;
+    for (int i = 0; i < rectSizes.size(); i++) {
+        minPos = i;
+
+        for (int j = i + 1; j < rectSizes.size(); j++) {
+            if (rectSizes.at(j) < rectSizes.at(minPos))
+                minPos = j;
+        }
+        swapInt(rectSizes, i, minPos);
+    }
+    sorted = true;
+}

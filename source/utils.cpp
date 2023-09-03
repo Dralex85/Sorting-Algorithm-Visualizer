@@ -34,6 +34,23 @@ void shuffle(vector<int> &rectSizes) {
     }
 }
 
+void statData(vector<int> rectSizes, vector<int> original) {
+    int count = 0;
+
+    selectionSortNoDisplay(rectSizes);
+
+    for (int i = 0; i < rectSizes.size(); i++) {
+        if(rectSizes.at(i) == original.at(i))
+            count++;
+    }
+
+    cout << "Data at " << count << "/" << rectNum << " element in place" << endl << endl;
+
+    rectSizes = original;
+    sorted = false;
+    sleepCount = 0;
+}
+
 void verify(vector<int> tab) {
     int last = tab.at(0);
     for (int i = 0; i < tab.size(); i++) {

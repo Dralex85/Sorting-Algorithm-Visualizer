@@ -60,6 +60,7 @@ void all(vector<int> rectSizes) {
     int index = 0;
     int currentAlgorithm = 0;
 
+    statData(rectSizes, original);
     clock_t clock_start = clock();
     bool clockIsUp = true;
 
@@ -110,6 +111,8 @@ int main(int argc, char **argv) {
     initSizes(rectSizes);
     shuffle(rectSizes);
     
+    statData(rectSizes, rectSizes);
+
     if(algorithm == -42) {
         all(rectSizes);
         return 0;
